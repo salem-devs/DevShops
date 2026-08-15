@@ -32,4 +32,33 @@ async function getProducts() {
     }
 }
 
+// Affichage des produits
+function displayProducts(productsToDisplay) {
 
+    productsContainer.innerHTML = "";
+
+    productsToDisplay.forEach(product => {
+
+        const productCard = document.createElement("article");
+
+        productCard.classList.add("product-card");
+
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.title}">
+
+            <h2>${product.title}</h2>
+
+            <p>${product.category}</p>
+
+            <strong>${product.price} $</strong>
+
+            <button class="add-cart-btn" data-id="${product.id}">
+                Ajouter au panier
+            </button>
+        `;
+
+        productsContainer.appendChild(productCard);
+    });
+}
+
+getProducts();
