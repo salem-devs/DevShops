@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevShop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <h1>DevShop</h1>
+
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Rechercher un produit..."
+                >
+            </div>
+
+            <button id="cartBtn">
+                🛒 Panier (<span id="cartCount">0</span>)
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Catégories -->
+        <section class="categories">
+            <button class="category-btn active" data-category="all">
+                Tous
+            </button>
+
+            <button class="category-btn" data-category="electronics">
+                Électronique
+            </button>
+
+            <button class="category-btn" data-category="jewelery">
+                Bijoux
+            </button>
+
+            <button class="category-btn" data-category="men's clothing">
+                Hommes
+            </button>
+
+            <button class="category-btn" data-category="women's clothing">
+                Femmes
+            </button>
+        </section>
+
+        <!-- Loader -->
+        <div id="loader" class="loader">
+            Chargement des produits...
+        </div>
+
+        <!-- Message d'erreur -->
+        <div id="errorMessage" class="error-message"></div>
+
+        <!-- Produits -->
+        <section id="productsContainer" class="products-grid">
+            <!-- Les produits seront générés ici avec JavaScript -->
+        </section>
+
+    </main>
+
+    <!-- Panier -->
+    <aside id="cartDrawer" class="cart-drawer">
+
+        <div class="cart-header">
+            <h2>Mon panier</h2>
+
+            <button id="closeCartBtn">
+                ✕
+            </button>
+        </div>
+
+        <div id="cartItems">
+            <!-- Les articles du panier seront générés ici -->
+        </div>
+
+        <div class="cart-footer">
+            <p>
+                Total :
+                <strong id="cartTotal">0.00 $</strong>
+            </p>
+
+            <button id="checkoutBtn">
+                Commander
+            </button>
+        </div>
+
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
