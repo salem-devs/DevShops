@@ -3,8 +3,13 @@ const apiUrl = "https://fakestoreapi.com/products";
 const productsContainer = document.getElementById("productsContainer");
 const loader = document.getElementById("loader");
 const errorMessage = document.getElementById("errorMessage");
+const categoryButtons = document.querySelectorAll(".category-btn");
+const searchInput = document.getElementById("searchInput");
+const cartCount = document.getElementById("cartCount");
 
 let products = [];
+let cart = [];
+
 
 // Récupéreration des produits
 async function getProducts() {
@@ -61,8 +66,6 @@ function displayProducts(productsToDisplay) {
     });
 }
 
-getProducts();
-
 categoryButtons.forEach(button => {
 
     button.addEventListener("click", () => {
@@ -84,7 +87,6 @@ categoryButtons.forEach(button => {
     });
 });
 
-getProducts();
 
 //Recherche de produits
 searchInput.addEventListener("input", () => {
@@ -97,5 +99,32 @@ searchInput.addEventListener("input", () => {
 
     displayProducts(filteredProducts);
 });
+
+function addToCart(productId) {
+
+    const product = products.find(product => {
+        return product.id === productId;
+    });
+
+    if (product) {
+        cart.push(product);
+        updateCartCount();
+    }
+}
+
+function updateCartCount() {
+    cartCount.textContent = cart.length;
+}
+
+productsContainer.addEventListener("click", event => {
+
+    if (event.target.classList.contains("add-cart-btn")) {
+
+        const productId = Number(event.target.dataset.id);
+
+        addToCart(productId);
+    }
+});
+
 
 getProducts();
