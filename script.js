@@ -26,6 +26,7 @@ async function getProducts() {
 
         products = data;
 
+        displayProducts(products);
         console.log(products);
 
     } catch (error) {
