@@ -85,3 +85,17 @@ categoryButtons.forEach(button => {
 });
 
 getProducts();
+
+//Recherche de produits
+searchInput.addEventListener("input", () => {
+
+    const searchText = searchInput.value.toLowerCase();
+
+    const filteredProducts = products.filter(product => {
+        return product.title.toLowerCase().includes(searchText);
+    });
+
+    displayProducts(filteredProducts);
+});
+
+getProducts();
