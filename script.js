@@ -62,3 +62,26 @@ function displayProducts(productsToDisplay) {
 }
 
 getProducts();
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const category = button.dataset.category;
+
+        if (category === "all") {
+
+            displayProducts(products);
+
+        } else {
+
+            const filteredProducts = products.filter(product => {
+                return product.category === category;
+            });
+
+            displayProducts(filteredProducts);
+        }
+    });
+});
+
+getProducts();
