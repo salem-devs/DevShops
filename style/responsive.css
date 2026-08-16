@@ -1,0 +1,83 @@
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-wrap: wrap;
+        padding: 16px;
+    }
+
+    .search-container {
+        order: 3;
+        max-width: none;
+        flex-basis: 100%;
+    }
+
+    main {
+        padding: 24px 16px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .cart-drawer {
+        width: 100%;
+        max-width: 400px;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content : flex-end ;
+    align-items: center;
+}
+
+    .hero-image {
+    position: absolute;
+    right: 10%;
+    top: 25%;
+    transform: translateY(-50%);
+    /* width: 380px; */
+    z-index: 1;
+    }
+
+    .hero-image {
+    
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    z-index: 1;
+    
+}
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card img {
+        height: 240px;
+    }
+
+
+}

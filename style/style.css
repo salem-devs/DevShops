@@ -91,6 +91,7 @@ main {
     border-bottom: 3px solid #000;
     border-radius: 20px;
     color: #ebe3da;
+    position: relative;
 }
 
 .hero span {
@@ -120,22 +121,16 @@ main {
 
 .hero-image {
     position: absolute;
-    right: 2%;
+    right: -2%;
     top: 55%;
     transform: translateY(-50%);
     /* width: 380px; */
-    z-index: 1;
-}
-
-.hero-image {
-    
+    z-index: 1;    
     width: 430px;
     height: 430px;
     object-fit: contain;
     z-index: 1;
     /* border: 1px solid #000; */
-
-
 }
 
 .categories {
@@ -366,87 +361,4 @@ main {
     height: 100%;
     background: rgba(0, 0, 0, 0.45);
     z-index: 999;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .navbar {
-        gap: 15px;
-    }
-
-}
-
-@media (max-width: 700px) {
-
-    .navbar {
-        flex-wrap: wrap;
-        padding: 16px;
-    }
-
-    .search-container {
-        order: 3;
-        max-width: none;
-        flex-basis: 100%;
-    }
-
-    main {
-        padding: 24px 16px;
-    }
-
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-
-    .cart-drawer {
-        width: 100%;
-        max-width: 400px;
-    }
-
-}
-
-@media (max-width: 450px) {
-
-.hero {
-    display: flex;
-    flex-direction: column;
-    justify-content : flex-end ;
-    align-items: center;
-}
-
-    .hero-image {
-    position: absolute;
-    right: 15%;
-    top: 45%;
-    transform: translateY(-50%);
-    /* width: 380px; */
-    z-index: 1;
-    }
-
-    .hero-image {
-    
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    z-index: 1;
-    border: 1px solid #000;
-}
-
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .product-card img {
-        height: 240px;
-    }
-
-
 }
