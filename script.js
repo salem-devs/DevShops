@@ -115,10 +115,26 @@ function addToCart(productId) {
     });
 
     if (product) {
-        cart.push(product);
+
+        const existingProduct = cart.find(item => {
+            return item.id === productId;
+        });
+
+        if (existingProduct) {
+
+            existingProduct.quantity++;
+
+        } else {
+
+            cart.push({
+                ...product,
+                quantity: 1
+            });
+
+        }
+
         updateCartCount();
         displayCart();
-
     }
 }
 
@@ -134,6 +150,35 @@ productsContainer.addEventListener("click", event => {
 
         addToCart(productId);
     }
+});
+cartItems.addEventListener("click", event => {
+
+    const productId = Number(event.target.dataset.id);
+
+    const product = cart.find(item => {
+        return item.id === productId;
+    });
+
+    if (!product) {
+        return;
+    }
+
+    if (event.target.classList.contains("increase-btn")) {
+
+        product.quantity++;
+
+    }
+
+    if (event.target.classList.contains("decrease-btn")) {
+
+        if (product.quantity > 1) {
+            product.quantity--;
+        }
+
+    }
+
+    updateCartCount();
+    displayCart();
 });
 
 function displayCart() {
@@ -157,7 +202,22 @@ function displayCart() {
 
             <div>
                 <h3>${product.title}</h3>
+
                 <p>${product.price} $</p>
+
+                <div class="quantity-controls">
+
+                    <button class="decrease-btn" data-id="${product.id}">
+                        -
+                    </button>
+
+                    <span>${product.quantity}</span>
+
+                    <button class="increase-btn" data-id="${product.id}">
+                        +
+                    </button>
+
+                </div>
             </div>
         `;
 
@@ -165,7 +225,7 @@ function displayCart() {
     });
 
     const total = cart.reduce((sum, product) => {
-        return sum + product.price;
+        return sum + (product.price * product.quantity);
     }, 0);
 
     cartTotal.textContent = `${total.toFixed(2)} $`;
