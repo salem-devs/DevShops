@@ -6,6 +6,13 @@ const errorMessage = document.getElementById("errorMessage");
 const categoryButtons = document.querySelectorAll(".category-btn");
 const searchInput = document.getElementById("searchInput");
 const cartCount = document.getElementById("cartCount");
+const cartDrawer = document.getElementById("cartDrawer");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+
+const cartBtn = document.getElementById("cartBtn");
+const closeCartBtn = document.getElementById("closeCartBtn");
+const overlay = document.getElementById("overlay");
 
 let products = [];
 let cart = [];
@@ -110,6 +117,8 @@ function addToCart(productId) {
     if (product) {
         cart.push(product);
         updateCartCount();
+        displayCart();
+
     }
 }
 
@@ -127,5 +136,55 @@ productsContainer.addEventListener("click", event => {
     }
 });
 
+function displayCart() {
+
+    cartItems.innerHTML = "";
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Votre panier est vide.</p>";
+        cartTotal.textContent = "0.00 $";
+        return;
+    }
+
+    cart.forEach(product => {
+
+        const cartItem = document.createElement("div");
+
+        cartItem.classList.add("cart-item");
+
+        cartItem.innerHTML = `
+            <img src="${product.image}" alt="${product.title}">
+
+            <div>
+                <h3>${product.title}</h3>
+                <p>${product.price} $</p>
+            </div>
+        `;
+
+        cartItems.appendChild(cartItem);
+    });
+
+    const total = cart.reduce((sum, product) => {
+        return sum + product.price;
+    }, 0);
+
+    cartTotal.textContent = `${total.toFixed(2)} $`;
+}
+
+cartBtn.addEventListener("click", () => {
+    displayCart();
+    cartDrawer.style.display = "block";
+    overlay.style.display = "block";
+});
+
+closeCartBtn.addEventListener("click", () => {
+    cartDrawer.style.display = "none";
+    overlay.style.display = "none";
+});
+
+overlay.addEventListener("click", () => {
+    cartDrawer.style.display = "none";
+    overlay.style.display = "none";
+});
 
 getProducts();
